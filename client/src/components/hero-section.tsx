@@ -1,133 +1,278 @@
-import { useState, useEffect } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Star, Crown } from "lucide-react";
-import AssetCard from "./asset-card";
 
-export default function HeroSection() {
-  const [currentAssetIndex, setCurrentAssetIndex] = useState(0);
+"use client"
 
-  const { data: featuredAssets } = useQuery({
-    queryKey: ["/api/assets/featured"],
-  });
+import { motion, useScroll, useTransform, useInView } from "framer-motion"
+import { Search, TrendingUp, Shield, Zap } from "lucide-react"
+import { useRef } from "react"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Badge } from "@/components/ui/badge"
 
-  useEffect(() => {
-    if (featuredAssets && featuredAssets.length > 1) {
-      const interval = setInterval(() => {
-        setCurrentAssetIndex((prev) => (prev + 1) % featuredAssets.length);
-      }, 5000);
-      return () => clearInterval(interval);
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.1
     }
-  }, [featuredAssets]);
+  }
+}
 
-  const currentAsset = featuredAssets?.[currentAssetIndex];
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "spring",
+      stiffness: 100,
+      damping: 10
+    }
+  }
+}
+
+const floatingVariants = {
+  animate: {
+    y: [-10, 10, -10],
+    transition: {
+      duration: 6,
+      repeat: Infinity,
+      ease: "easeInOut"
+    }
+  }
+}
+
+const features = [
+  {
+    icon: TrendingUp,
+    title: "Market Analytics",
+    description: "Real-time market insights and trends"
+  },
+  {
+    icon: Shield,
+    title: "Secure Trading",
+    description: "Bank-level security for all transactions"
+  },
+  {
+    icon: Zap,
+    title: "Instant Access",
+    description: "Lightning-fast search and discovery"
+  }
+]
+
+export function HeroSection() {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const { scrollY } = useScroll()
+  const y = useTransform(scrollY, [0, 500], [0, 150])
+  const opacity = useTransform(scrollY, [0, 300], [1, 0])
 
   return (
-    <section className="pt-20 pb-12 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-r from-white/50 to-transparent"></div>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
-          <div className="fade-in">
-            <h1 className="font-playfair text-5xl lg:text-7xl font-bold text-luxury-navy leading-tight mb-6">
-              Exceptional
-              <span className="luxury-text-gradient block">
-                Luxury
-              </span>
-              Assets
-            </h1>
-            <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-              Discover the world's most exclusive collection of luxury assets. From rare timepieces 
-              to exceptional real estate, each piece is curated with the elegance it deserves.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button 
-                asChild
-                size="lg"
-                className="luxury-gradient text-white hover:shadow-xl transition-all duration-300 font-semibold"
+    <motion.section 
+      ref={ref}
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900"
+      style={{ y, opacity }}
+    >
+      {/* Background Effects */}
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%239C92AC" fill-opacity="0.1"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20" />
+      
+      {/* Floating Elements */}
+      <motion.div
+        className="absolute top-20 left-10 w-16 h-16 bg-purple-500/20 rounded-full blur-xl"
+        variants={floatingVariants}
+        animate="animate"
+      />
+      <motion.div
+        className="absolute bottom-20 right-10 w-24 h-24 bg-blue-500/20 rounded-full blur-xl"
+        variants={floatingVariants}
+        animate="animate"
+        transition={{ delay: 2 }}
+      />
+      <motion.div
+        className="absolute top-1/2 right-20 w-12 h-12 bg-pink-500/20 rounded-full blur-xl"
+        variants={floatingVariants}
+        animate="animate"
+        transition={{ delay: 4 }}
+      />
+
+      <div className="container mx-auto px-4 z-10">
+        <motion.div
+          className="text-center max-w-4xl mx-auto"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          {/* Badge */}
+          <motion.div
+            variants={itemVariants}
+            className="mb-8"
+          >
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-block"
+            >
+              <Badge 
+                variant="outline" 
+                className="bg-white/10 border-white/20 text-white backdrop-blur-sm px-4 py-2 text-sm"
               >
-                <a href="/search">Explore Collection</a>
-              </Button>
-              <Button
-                asChild
-                variant="outline"
-                size="lg"
-                className="border-2 border-luxury-navy text-luxury-navy hover:bg-luxury-navy hover:text-white transition-all duration-300 font-semibold"
-              >
-                <a href="/contact">Learn More</a>
-              </Button>
-            </div>
-          </div>
-          
-          <div className="relative">
-            {currentAsset ? (
-              <div className="relative">
-                <AssetCard 
-                  asset={currentAsset} 
-                  className="hover-scale luxury-shadow-hover transform transition-all duration-500"
-                />
-                
-                {/* Asset Navigation Dots */}
-                {featuredAssets && featuredAssets.length > 1 && (
-                  <div className="flex justify-center mt-6 space-x-2">
-                    {featuredAssets.map((_, index) => (
-                      <button
-                        key={index}
-                        onClick={() => setCurrentAssetIndex(index)}
-                        className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                          index === currentAssetIndex
-                            ? "bg-luxury-indigo scale-125"
-                            : "bg-gray-300 hover:bg-gray-400"
-                        }`}
-                      />
-                    ))}
-                  </div>
-                )}
-              </div>
-            ) : (
-              // Fallback hero card when no featured assets
-              <div className="relative bg-white rounded-3xl p-8 luxury-shadow hover-scale luxury-shadow-hover">
-                <Badge className="absolute -top-3 -right-3 bg-luxury-gold text-white flex items-center shadow-lg">
-                  <Crown className="w-3 h-3 mr-1" />
-                  FEATURED
-                </Badge>
-                
-                <img 
-                  src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=600" 
-                  alt="Luxury timepiece showcase" 
-                  className="w-full h-64 object-cover rounded-2xl mb-6"
-                />
-                
-                <div className="flex justify-between items-start mb-4">
-                  <div>
-                    <h3 className="font-playfair text-2xl font-bold text-luxury-navy mb-2">
-                      Curated Excellence
-                    </h3>
-                    <p className="text-gray-600">Discover luxury redefined</p>
-                  </div>
-                  <div className="text-right">
-                    <div className="flex items-center mt-1">
-                      <div className="flex text-luxury-gold mr-2">
-                        {[...Array(5)].map((_, i) => (
-                          <Star key={i} className="w-4 h-4 fill-current" />
-                        ))}
-                      </div>
-                      <span className="text-sm text-gray-500">(5.0)</span>
-                    </div>
-                  </div>
-                </div>
-                
-                <Button 
-                  asChild
-                  className="w-full luxury-gradient text-white hover:shadow-lg transition-all duration-300 font-semibold"
+                <motion.span
+                  animate={{ 
+                    background: [
+                      "linear-gradient(45deg, #fff, #fff)",
+                      "linear-gradient(45deg, #8B5CF6, #06B6D4)",
+                      "linear-gradient(45deg, #fff, #fff)"
+                    ]
+                  }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                  style={{ 
+                    backgroundClip: "text",
+                    WebkitBackgroundClip: "text",
+                    color: "transparent"
+                  }}
                 >
-                  <a href="/search">Explore Collection</a>
-                </Button>
+                  ✨ New: AI-Powered Asset Discovery
+                </motion.span>
+              </Badge>
+            </motion.div>
+          </motion.div>
+
+          {/* Main Heading */}
+          <motion.h1
+            variants={itemVariants}
+            className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight"
+          >
+            Discover{" "}
+            <motion.span
+              className="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent"
+              animate={{ 
+                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
+              }}
+              transition={{ duration: 5, repeat: Infinity }}
+              style={{ backgroundSize: "200% 100%" }}
+            >
+              Luxury
+            </motion.span>{" "}
+            <br />
+            Assets
+          </motion.h1>
+
+          {/* Subtitle */}
+          <motion.p
+            variants={itemVariants}
+            className="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed"
+          >
+            Explore premium collectibles, rare finds, and exclusive investments 
+            in the world's most sophisticated marketplace
+          </motion.p>
+
+          {/* Search Bar */}
+          <motion.div
+            variants={itemVariants}
+            className="mb-12"
+          >
+            <motion.div
+              className="relative max-w-lg mx-auto"
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            >
+              <div className="relative">
+                <Input
+                  type="text"
+                  placeholder="Search luxury watches, art, cars..."
+                  className="w-full h-14 pl-6 pr-16 text-lg bg-white/90 backdrop-blur-sm border-0 rounded-full shadow-xl focus:bg-white focus:shadow-2xl transition-all duration-300"
+                />
+                <motion.div
+                  className="absolute right-2 top-2"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Button size="icon" className="h-10 w-10 rounded-full">
+                    <Search className="h-5 w-5" />
+                  </Button>
+                </motion.div>
               </div>
-            )}
-          </div>
-        </div>
+            </motion.div>
+          </motion.div>
+
+          {/* CTA Buttons */}
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
+          >
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Button 
+                size="lg" 
+                className="h-14 px-8 text-lg bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 border-0 rounded-full shadow-xl"
+              >
+                Explore Collection
+              </Button>
+            </motion.div>
+            
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="h-14 px-8 text-lg bg-white/10 border-white/20 text-white hover:bg-white/20 rounded-full backdrop-blur-sm"
+              >
+                Watch Demo
+              </Button>
+            </motion.div>
+          </motion.div>
+
+          {/* Features */}
+          <motion.div
+            variants={containerVariants}
+            className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
+          >
+            {features.map((feature, index) => (
+              <motion.div
+                key={index}
+                variants={itemVariants}
+                className="text-center"
+                whileHover={{ scale: 1.05, y: -5 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              >
+                <motion.div
+                  className="inline-flex items-center justify-center w-16 h-16 bg-white/10 backdrop-blur-sm rounded-full mb-4 mx-auto"
+                  whileHover={{ rotate: 360 }}
+                  transition={{ duration: 0.6 }}
+                >
+                  <feature.icon className="h-8 w-8 text-white" />
+                </motion.div>
+                <h3 className="text-lg font-semibold text-white mb-2">
+                  {feature.title}
+                </h3>
+                <p className="text-gray-300">
+                  {feature.description}
+                </p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.div>
       </div>
-    </section>
-  );
+
+      {/* Scroll Indicator */}
+      <motion.div
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        animate={{ y: [0, 10, 0] }}
+        transition={{ duration: 2, repeat: Infinity }}
+      >
+        <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
+          <motion.div
+            className="w-1 h-3 bg-white rounded-full mt-2"
+            animate={{ y: [0, 12, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          />
+        </div>
+      </motion.div>
+    </motion.section>
+  )
 }
