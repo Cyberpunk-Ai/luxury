@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Badge } from "@/components/ui/badge";
-import { Search, Heart, Menu, ChevronDown } from "lucide-react";
+import { Search, Heart, Menu, ChevronDown, TrendingUp, Award } from "lucide-react";
 
 export default function Navigation() {
   const [location, setLocation] = useLocation();
@@ -79,6 +79,26 @@ export default function Navigation() {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
+
+            <Link
+              href="/ranking"
+              className={`font-medium transition-colors flex items-center space-x-1 ${
+                isActive("/ranking") ? "text-luxury-navy" : "text-gray-700 hover:text-luxury-navy"
+              }`}
+            >
+              <TrendingUp className="h-4 w-4" />
+              <span>Rankings</span>
+            </Link>
+
+            <Link
+              href="/credits"
+              className={`font-medium transition-colors flex items-center space-x-1 ${
+                isActive("/credits") ? "text-luxury-navy" : "text-gray-700 hover:text-luxury-navy"
+              }`}
+            >
+              <Award className="h-4 w-4" />
+              <span>Credits</span>
+            </Link>
 
             <Link
               href="/search"
@@ -160,6 +180,16 @@ export default function Navigation() {
                       ))}
                     </div>
                   </div>
+
+                  <Link href="/ranking" className="text-lg font-medium text-luxury-navy flex items-center space-x-2">
+                    <TrendingUp className="h-5 w-5" />
+                    <span>Rankings</span>
+                  </Link>
+
+                  <Link href="/credits" className="text-lg font-medium text-luxury-navy flex items-center space-x-2">
+                    <Award className="h-5 w-5" />
+                    <span>Credits</span>
+                  </Link>
 
                   <Link href="/search" className="text-lg font-medium text-luxury-navy">
                     Search

@@ -10,6 +10,8 @@ import AssetDetail from "@/pages/asset-detail";
 import Search from "@/pages/search";
 import Wishlist from "@/pages/wishlist";
 import Contact from "@/pages/contact";
+import Ranking from "@/pages/ranking";
+import Credits from "@/pages/credits";
 
 function Router() {
   return (
@@ -20,6 +22,8 @@ function Router() {
       <Route path="/search" component={Search} />
       <Route path="/wishlist" component={Wishlist} />
       <Route path="/contact" component={Contact} />
+      <Route path="/ranking" component={Ranking} />
+      <Route path="/credits" component={Credits} />
       <Route component={NotFound} />
     </Switch>
   );
