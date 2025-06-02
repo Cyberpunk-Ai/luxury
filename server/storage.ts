@@ -4,16 +4,25 @@ import {
   assets,
   wishlists,
   contacts,
+  assetRatings,
+  creditTransactions,
+  assetLikes,
   type User,
   type Category,
   type Asset,
   type Wishlist,
   type Contact,
+  type AssetRating,
+  type CreditTransaction,
+  type AssetLike,
   type InsertUser,
   type InsertCategory,
   type InsertAsset,
   type InsertWishlist,
   type InsertContact,
+  type InsertAssetRating,
+  type InsertCreditTransaction,
+  type InsertAssetLike,
   type AssetWithCategory,
   type SearchFilters,
 } from "@shared/schema";
@@ -37,12 +46,28 @@ export interface IStorage {
   getAssetsByCategory(categoryId: number): Promise<AssetWithCategory[]>;
   createAsset(asset: InsertAsset): Promise<Asset>;
   updateAsset(id: number, updates: Partial<Asset>): Promise<Asset | undefined>;
+  incrementAssetViews(id: number): Promise<void>;
+  getTopRankedAssets(limit?: number): Promise<AssetWithCategory[]>;
 
   // Wishlist
   getWishlist(userId: number): Promise<AssetWithCategory[]>;
   addToWishlist(wishlist: InsertWishlist): Promise<Wishlist>;
   removeFromWishlist(userId: number, assetId: number): Promise<boolean>;
   isInWishlist(userId: number, assetId: number): Promise<boolean>;
+
+  // Asset Likes
+  likeAsset(userId: number, assetId: number): Promise<AssetLike>;
+  unlikeAsset(userId: number, assetId: number): Promise<boolean>;
+  isAssetLiked(userId: number, assetId: number): Promise<boolean>;
+
+  // Asset Ratings
+  rateAsset(rating: InsertAssetRating): Promise<AssetRating>;
+  getAssetRatings(assetId: number): Promise<AssetRating[]>;
+
+  // Credits
+  getCreditBalance(userId: number): Promise<number>;
+  addCredits(transaction: InsertCreditTransaction): Promise<CreditTransaction>;
+  spendCredits(userId: number, amount: number, description: string, assetId?: number): Promise<CreditTransaction>;
 
   // Contacts
   createContact(contact: InsertContact): Promise<Contact>;
