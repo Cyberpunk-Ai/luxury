@@ -58,7 +58,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gray-900 text-white relative z-10">
+    <footer className="bg-luxury-dark text-white">
       {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid lg:grid-cols-5 gap-8">
@@ -226,8 +226,8 @@ export default function Footer() {
         </div>
 
         {/* Trust Badges */}
-        <div className="mt-8 pt-8 border-t border-white/20 bg-gray-900/50 -mx-4 px-4 py-6 rounded-lg">
-          <div className="flex flex-wrap justify-center items-center gap-8 text-white/80 text-sm">
+        <div className="mt-8 pt-8 border-t border-white/20">
+          <div className="flex flex-wrap justify-center items-center gap-8 text-white/60 text-sm">
             <div className="flex items-center space-x-2">
               <div className="w-6 h-6 bg-luxury-gold rounded flex items-center justify-center">
                 <span className="text-xs font-bold text-luxury-dark">SSL</span>
