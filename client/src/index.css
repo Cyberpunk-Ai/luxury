@@ -1,0 +1,196 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+:root {
+  --background: 210 11% 98%; /* #F5F7FA */
+  --foreground: 237 84% 11%; /* #1a1a2e */
+  --muted: 210 11% 96%; /* #f1f3f6 */
+  --muted-foreground: 240 5% 45%; /* #64748b */
+  --popover: 210 11% 98%; /* #F5F7FA */
+  --popover-foreground: 237 84% 11%; /* #1a1a2e */
+  --card: 0 0% 100%; /* #ffffff */
+  --card-foreground: 237 84% 11%; /* #1a1a2e */
+  --border: 220 13% 91%; /* #e2e8f0 */
+  --input: 220 13% 91%; /* #e2e8f0 */
+  --primary: 244 62% 62%; /* #6366f1 */
+  --primary-foreground: 212 100% 99%; /* #fefffe */
+  --secondary: 210 11% 96%; /* #f1f3f6 */
+  --secondary-foreground: 237 84% 15%; /* #1e293b */
+  --accent: 210 11% 96%; /* #f1f3f6 */
+  --accent-foreground: 237 84% 15%; /* #1e293b */
+  --destructive: 0 84% 60%; /* #ef4444 */
+  --destructive-foreground: 60 9% 98%; /* #fefcfc */
+  --ring: 244 62% 62%; /* #6366f1 */
+  --radius: 0.75rem;
+  
+  /* Custom luxury colors */
+  --luxury-navy: 237 84% 11%; /* #1a1a2e */
+  --luxury-dark: 234 84% 15%; /* #16213e */
+  --luxury-gold: 45 85% 53%; /* #d4af37 */
+  --luxury-indigo: 244 62% 62%; /* #6366f1 */
+}
+
+.dark {
+  --background: 237 84% 4%; /* #0a0a14 */
+  --foreground: 210 11% 98%; /* #F5F7FA */
+  --muted: 237 84% 8%; /* #141424 */
+  --muted-foreground: 220 13% 65%; /* #94a3b8 */
+  --popover: 237 84% 4%; /* #0a0a14 */
+  --popover-foreground: 210 11% 98%; /* #F5F7FA */
+  --card: 237 84% 6%; /* #0f0f1a */
+  --card-foreground: 210 11% 98%; /* #F5F7FA */
+  --border: 237 84% 12%; /* #1f1f2e */
+  --input: 237 84% 12%; /* #1f1f2e */
+  --primary: 244 62% 62%; /* #6366f1 */
+  --primary-foreground: 212 100% 99%; /* #fefffe */
+  --secondary: 237 84% 8%; /* #141424 */
+  --secondary-foreground: 210 11% 90%; /* #e2e8f0 */
+  --accent: 237 84% 8%; /* #141424 */
+  --accent-foreground: 210 11% 90%; /* #e2e8f0 */
+  --destructive: 0 84% 60%; /* #ef4444 */
+  --destructive-foreground: 60 9% 98%; /* #fefcfc */
+  --ring: 244 62% 70%; /* #818cf8 */
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+@layer components {
+  .font-playfair {
+    font-family: 'Playfair Display', serif;
+  }
+
+  .font-inter {
+    font-family: 'Inter', sans-serif;
+  }
+
+  .luxury-gradient {
+    background: linear-gradient(135deg, hsl(var(--luxury-indigo)) 0%, hsl(var(--luxury-navy)) 100%);
+  }
+
+  .light-gradient {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  }
+
+  .gold-gradient {
+    background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+  }
+
+  .luxury-shadow {
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  }
+
+  .luxury-shadow-hover {
+    transition: box-shadow 0.3s ease;
+  }
+
+  .luxury-shadow-hover:hover {
+    box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+  }
+
+  .hover-scale {
+    transition: transform 0.3s ease;
+  }
+
+  .hover-scale:hover {
+    transform: scale(1.02);
+  }
+
+  .fade-in {
+    animation: fadeIn 0.8s ease-in;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .slide-in-up {
+    animation: slideInUp 0.6s ease-out;
+  }
+
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .luxury-text-gradient {
+    background: linear-gradient(135deg, hsl(var(--luxury-indigo)) 0%, hsl(var(--luxury-gold)) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+@layer utilities {
+  .text-luxury-navy {
+    color: hsl(var(--luxury-navy));
+  }
+
+  .text-luxury-dark {
+    color: hsl(var(--luxury-dark));
+  }
+
+  .text-luxury-gold {
+    color: hsl(var(--luxury-gold));
+  }
+
+  .text-luxury-indigo {
+    color: hsl(var(--luxury-indigo));
+  }
+
+  .bg-luxury-navy {
+    background-color: hsl(var(--luxury-navy));
+  }
+
+  .bg-luxury-dark {
+    background-color: hsl(var(--luxury-dark));
+  }
+
+  .bg-luxury-gold {
+    background-color: hsl(var(--luxury-gold));
+  }
+
+  .bg-luxury-indigo {
+    background-color: hsl(var(--luxury-indigo));
+  }
+
+  .border-luxury-navy {
+    border-color: hsl(var(--luxury-navy));
+  }
+
+  .border-luxury-gold {
+    border-color: hsl(var(--luxury-gold));
+  }
+
+  .border-luxury-indigo {
+    border-color: hsl(var(--luxury-indigo));
+  }
+}
