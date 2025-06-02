@@ -43,12 +43,8 @@ export default function Navigation() {
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
-            <div className="w-10 h-10 rounded-lg overflow-hidden">
-              <img 
-                src="/attached_assets/logo1.jpeg" 
-                alt="Otulia Logo" 
-                className="w-full h-full object-cover"
-              />
+            <div className="w-10 h-10 luxury-gradient rounded-lg flex items-center justify-center">
+              <span className="text-white font-bold text-xl">O</span>
             </div>
             <span className="font-playfair text-2xl font-bold text-luxury-navy">Otulia</span>
           </Link>
