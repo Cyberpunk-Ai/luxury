@@ -15,6 +15,16 @@ interface AssetCardProps {
   showRemoveFromWishlist?: boolean;
 }
 
+const categoryFallbackImages = {
+  watches: "https://images.unsplash.com/photo-1594576662848-c41e96c0f50e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80",
+  cars: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80",
+  jewelry: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80",
+  "real-estate": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80",
+  fashion: "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80",
+  art: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80",
+};
+
+
 export default function AssetCard({ 
   asset, 
   className, 
@@ -69,7 +79,7 @@ export default function AssetCard({
   const handleWishlistToggle = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    
+
     if (showRemoveFromWishlist || isWishlisted) {
       removeFromWishlistMutation.mutate();
     } else {
@@ -93,19 +103,25 @@ export default function AssetCard({
     );
   };
 
-  const primaryImage = asset.images?.[0] || "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600";
+  const getImageSrc = () => {
+    if (asset.images?.[0]) return asset.images?.[0];
+    if (!asset.category?.slug) return categoryFallbackImages.art;
+    const categoryKey = asset.category.slug as keyof typeof categoryFallbackImages;
+    return categoryFallbackImages[categoryKey] || categoryFallbackImages.art;
+  };
+
 
   return (
     <Card className={cn("bg-white rounded-2xl p-6 luxury-shadow hover-scale luxury-shadow-hover group overflow-hidden border-0", className)}>
       <div className="relative mb-6">
         <a href={`/asset/${asset.id}`} className="block">
           <img
-            src={primaryImage}
+            src={getImageSrc()}
             alt={asset.title}
             className="w-full h-48 object-cover rounded-xl"
           />
         </a>
-        
+
         {/* Verification Badge */}
         {asset.verified && (
           <Badge className="absolute top-3 left-3 bg-luxury-gold text-white flex items-center shadow-lg">
@@ -141,7 +157,7 @@ export default function AssetCard({
           )}
         </Button>
       </div>
-      
+
       <div className="space-y-4">
         <div>
           <a href={`/asset/${asset.id}`} className="block hover:text-luxury-indigo transition-colors">
@@ -161,7 +177,7 @@ export default function AssetCard({
             )}
           </div>
         </div>
-        
+
         {/* Rating and Location */}
         <div className="flex items-center justify-between text-sm">
           <div className="flex items-center gap-1">
@@ -170,7 +186,7 @@ export default function AssetCard({
               ({asset.rating || "0"})
             </span>
           </div>
-          
+
           {asset.location && (
             <div className="flex items-center gap-1 text-gray-600">
               <MapPin className="w-3 h-3" />
@@ -193,12 +209,12 @@ export default function AssetCard({
               </Badge>
             )}
           </div>
-          
+
           <span className="text-green-600 font-semibold text-xs">
             {asset.verified ? "Authenticated" : "Pending"}
           </span>
         </div>
-        
+
         {/* Price and Action */}
         <div className="flex items-center justify-between pt-2">
           <div>
@@ -207,7 +223,7 @@ export default function AssetCard({
             </p>
             <p className="text-xs text-gray-500">{asset.currency || "USD"}</p>
           </div>
-          
+
           <Button 
             asChild
             size="sm"
