@@ -76,13 +76,13 @@ export default function Newsletter() {
             <Mail className="w-8 h-8 text-white" />
           </div>
           
-          <h2 className="font-playfair text-4xl lg:text-5xl font-bold text-white mb-4">
+          <h2 className="font-playfair text-4xl lg:text-5xl font-bold text-black mb-4">
             Stay Informed
           </h2>
-          <p className="text-xl text-white/90 mb-2">
+          <p className="text-xl text-black/90 mb-2">
             Subscribe to receive exclusive access to new collections and market insights
           </p>
-          <p className="text-white/70">
+          <p className="text-black/70">
             Join 50,000+ luxury enthusiasts worldwide
           </p>
         </div>
@@ -91,8 +91,8 @@ export default function Newsletter() {
           <div className="max-w-md mx-auto">
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
               <CheckCircle className="w-16 h-16 text-luxury-gold mx-auto mb-4" />
-              <h3 className="text-2xl font-bold text-white mb-2">Welcome to Otulia!</h3>
-              <p className="text-white/90">
+              <h3 className="text-2xl font-bold text-black mb-2">Welcome to Otulia!</h3>
+              <p className="text-black/90">
                 You'll receive our first exclusive newsletter within 24 hours.
               </p>
             </div>
@@ -105,7 +105,7 @@ export default function Newsletter() {
                 placeholder="Enter your email address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 px-6 py-4 rounded-xl border-0 bg-white/10 backdrop-blur-sm text-white placeholder:text-white/70 focus:outline-none focus:ring-2 focus:ring-luxury-gold focus:bg-white/20"
+                className="flex-1 px-6 py-4 rounded-xl border-0 bg-white/90 backdrop-blur-sm text-black placeholder:text-black/70 focus:outline-none focus:ring-2 focus:ring-luxury-gold focus:bg-white"
                 disabled={isLoading}
               />
               <Button
@@ -120,7 +120,7 @@ export default function Newsletter() {
         )}
         
         <div className="mt-6 text-center">
-          <p className="text-white/70 text-sm">
+          <p className="text-black/70 text-sm">
             ✓ Exclusive previews ✓ Market insights ✓ VIP events ✓ No spam, unsubscribe anytime
           </p>
         </div>
@@ -129,15 +129,15 @@ export default function Newsletter() {
         <div className="mt-12 grid grid-cols-3 gap-8 max-w-2xl mx-auto">
           <div className="text-center">
             <div className="text-2xl font-bold text-luxury-gold">50K+</div>
-            <div className="text-white/80 text-sm">Subscribers</div>
+            <div className="text-black/80 text-sm">Subscribers</div>
           </div>
           <div className="text-center">
             <div className="text-2xl font-bold text-luxury-gold">Weekly</div>
-            <div className="text-white/80 text-sm">Updates</div>
+            <div className="text-black/80 text-sm">Updates</div>
           </div>
           <div className="text-center">
             <div className="text-2xl font-bold text-luxury-gold">VIP</div>
-            <div className="text-white/80 text-sm">Access</div>
+            <div className="text-black/80 text-sm">Access</div>
           </div>
         </div>
       </div>
