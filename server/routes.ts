@@ -44,6 +44,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         condition: req.query.condition as string,
         location: req.query.location as string,
         query: req.query.query as string,
+        sellerId: req.query.sellerId as string,
       };
 
       // Remove undefined values
@@ -146,7 +147,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       const userId = 1; // Mock user ID
       const removed = await storage.removeFromWishlist(userId, assetId);
-      
+
       if (!removed) {
         return res.status(404).json({ message: "Item not found in wishlist" });
       }
@@ -234,7 +235,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       const userId = 1; // Mock user ID
       const isLiked = await storage.isAssetLiked(userId, assetId);
-      
+
       if (isLiked) {
         await storage.unlikeAsset(userId, assetId);
         res.json({ message: "Asset unliked", liked: false });

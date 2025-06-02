@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Badge } from "@/components/ui/badge";
-import { Search, Heart, Menu, ChevronDown, TrendingUp, Award } from "lucide-react";
+import { Search, Heart, Menu, ChevronDown, TrendingUp, Award, User } from "lucide-react";
 
 export default function Navigation() {
   const [location, setLocation] = useLocation();
@@ -165,7 +165,7 @@ export default function Navigation() {
                   <Link href="/" className="text-lg font-medium text-luxury-navy">
                     Home
                   </Link>
-                  
+
                   <div>
                     <h3 className="text-lg font-medium text-luxury-navy mb-3">Categories</h3>
                     <div className="space-y-2 ml-4">

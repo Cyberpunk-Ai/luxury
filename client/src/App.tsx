@@ -12,6 +12,7 @@ import Wishlist from "@/pages/wishlist";
 import Contact from "@/pages/contact";
 import Ranking from "@/pages/ranking";
 import Credits from "@/pages/credits";
+import Profile from "@/pages/profile";
 
 function Router() {
   return (
@@ -24,6 +25,7 @@ function Router() {
       <Route path="/contact" component={Contact} />
       <Route path="/ranking" component={Ranking} />
       <Route path="/credits" component={Credits} />
+      <Route path="/profile" component={Profile} />
       <Route component={NotFound} />
     </Switch>
   );
