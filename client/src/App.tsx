@@ -1,11 +1,17 @@
 import { Switch, Route } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
-import { Toaster } from "@/components/ui/toaster"
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
-import { SpeedDial } from "@/components/ui/floating-action-button"
-import { Heart, Search, Filter, Share2 } from "lucide-react"
+import { Toaster } from "@/components/ui/toaster";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import NotFound from "@/pages/not-found";
+import Home from "@/pages/home";
+import Category from "@/pages/category";
+import AssetDetail from "@/pages/asset-detail";
+import Search from "@/pages/search";
+import Wishlist from "@/pages/wishlist";
+import Contact from "@/pages/contact";
+import Ranking from "@/pages/ranking";
+import Credits from "@/pages/credits";
 
 function Router() {
   return (
@@ -24,46 +30,11 @@ function Router() {
 }
 
 function App() {
-  const navigate = useWouter()[1];
-
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <Navigation />
-        <Router />
-        <Footer />
         <Toaster />
-
-        <SpeedDial
-          actions={[
-            {
-              icon: <Search className="h-4 w-4" />,
-              label: "Quick Search",
-              onClick: () => navigate('/search'),
-              variant: "primary"
-            },
-            {
-              icon: <Heart className="h-4 w-4" />,
-              label: "Wishlist",
-              onClick: () => navigate('/wishlist'),
-              variant: "secondary"
-            },
-            {
-              icon: <Filter className="h-4 w-4" />,
-              label: "Filter",
-              onClick: () => console.log('Filter clicked'),
-              variant: "accent"
-            },
-            {
-              icon: <Share2 className="h-4 w-4" />,
-              label: "Share",
-              onClick: () => console.log('Share clicked'),
-              variant: "secondary"
-            }
-          ]}
-          direction="up"
-          mainButtonVariant="primary"
-        />
+        <Router />
       </TooltipProvider>
     </QueryClientProvider>
   );
