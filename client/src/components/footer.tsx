@@ -54,7 +54,7 @@ const socialLinks = [
   { icon: Linkedin, href: "https://linkedin.com/company/otulia", label: "LinkedIn" },
 ];
 
-export default function Footer() {
+function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -258,3 +258,5 @@ export default function Footer() {
     </footer>
   );
 }
+
+export default Footer;
