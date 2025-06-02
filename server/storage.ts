@@ -1,4 +1,5 @@
-// Re-export enhanced storage
-export * from "./enhanced-storage";
+// Re-export database storage
+export * from "./database-storage";
+import { DatabaseStorage } from "./database-storage";
 
-export { storage } from "./enhanced-storage";
+export const storage = new DatabaseStorage();
