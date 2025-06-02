@@ -51,8 +51,8 @@ export default function LuxuryServices() {
                 className="text-center p-6 border-0 hover:bg-slate-50 transition-all duration-300 group cursor-pointer"
               >
                 <CardContent className="p-0">
-                  <div className={`w-16 h-16 bg-gradient-to-r ${service.color} rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                    <Icon className="w-8 h-8 text-white" />
+                  <div className={`w-16 h-16 bg-gradient-to-r ${service.color} rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                    <Icon className="w-8 h-8 text-white drop-shadow-sm" />
                   </div>
                   
                   <h3 className="font-playfair text-xl font-bold text-luxury-navy mb-3 group-hover:text-luxury-indigo transition-colors">
@@ -70,30 +70,30 @@ export default function LuxuryServices() {
 
         {/* Additional Services Grid */}
         <div className="mt-16 grid md:grid-cols-3 gap-8">
-          <Card className="p-6 border-0 bg-gradient-to-br from-slate-50 to-blue-50">
+          <Card className="p-6 border-0 bg-white shadow-lg hover:shadow-xl transition-shadow">
             <CardContent className="p-0 text-center">
-              <div className="w-12 h-12 bg-luxury-indigo rounded-xl flex items-center justify-center mx-auto mb-4">
-                <span className="text-white font-bold">24/7</span>
+              <div className="w-12 h-12 bg-luxury-indigo rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+                <span className="text-white font-bold drop-shadow-sm">24/7</span>
               </div>
               <h4 className="font-semibold text-luxury-navy mb-2">Expert Support</h4>
               <p className="text-gray-600 text-sm">Round-the-clock assistance from luxury specialists</p>
             </CardContent>
           </Card>
 
-          <Card className="p-6 border-0 bg-gradient-to-br from-slate-50 to-blue-50">
+          <Card className="p-6 border-0 bg-white shadow-lg hover:shadow-xl transition-shadow">
             <CardContent className="p-0 text-center">
-              <div className="w-12 h-12 bg-luxury-gold rounded-xl flex items-center justify-center mx-auto mb-4">
-                <span className="text-white font-bold">VIP</span>
+              <div className="w-12 h-12 bg-luxury-gold rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+                <span className="text-white font-bold drop-shadow-sm">VIP</span>
               </div>
               <h4 className="font-semibold text-luxury-navy mb-2">Priority Access</h4>
               <p className="text-gray-600 text-sm">Exclusive previews and early access to new collections</p>
             </CardContent>
           </Card>
 
-          <Card className="p-6 border-0 bg-gradient-to-br from-slate-50 to-blue-50">
+          <Card className="p-6 border-0 bg-white shadow-lg hover:shadow-xl transition-shadow">
             <CardContent className="p-0 text-center">
-              <div className="w-12 h-12 bg-emerald-500 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <span className="text-white font-bold">★</span>
+              <div className="w-12 h-12 bg-emerald-500 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+                <span className="text-white font-bold drop-shadow-sm">★</span>
               </div>
               <h4 className="font-semibold text-luxury-navy mb-2">Quality Guarantee</h4>
               <p className="text-gray-600 text-sm">100% authenticity guarantee with lifetime support</p>
