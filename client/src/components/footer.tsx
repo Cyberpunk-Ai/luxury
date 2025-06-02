@@ -65,11 +65,9 @@ export default function Footer() {
           {/* Brand Section */}
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center space-x-2 mb-6">
-              <img 
-                src="/attached_assets/logo1.jpeg" 
-                alt="Otulia Logo" 
-                className="w-10 h-10 rounded-lg object-cover"
-              />
+              <div className="w-10 h-10 bg-gradient-to-r from-luxury-indigo to-luxury-gold rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-xl">O</span>
+              </div>
               <span className="font-playfair text-2xl font-bold">Otulia</span>
             </Link>
             
