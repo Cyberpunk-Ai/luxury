@@ -44,7 +44,7 @@ export default function Navigation() {
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
             <img 
-              src="/attached_assets/logo1.jpeg" 
+              src="https://ik.imagekit.io/hvsztcabt/logo1.jpeg?updatedAt=1748969333158" 
               alt="Otulia Logo" 
               className="w-10 h-10 rounded-lg object-cover"
             />

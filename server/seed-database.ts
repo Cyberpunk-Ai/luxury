@@ -97,7 +97,7 @@ export async function seedDatabase() {
         condition: "new",
         year: 2023,
         location: "New York, NY",
-        images: ["https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-4.0.3"],
+        images: ["https://watchesoff5th.com/cdn/shop/products/rolex-daytona-40mm-stainless-steel-white-panda-index-dial-ceramic-bezel-ref-116500ln-948876_1280x.jpg?v=1679412846"],
         verified: true,
         featured: true,
         rating: "4.9",

@@ -6,13 +6,13 @@ const services = [
     icon: Shield,
     title: "Authentication",
     description: "Every item verified by certified experts using advanced authentication protocols",
-    color: "from-luxury-indigo to-luxury-navy",
+    color: "from-indigo-600 to-blue-900 shadow-md",
   },
   {
     icon: Bell,
     title: "Concierge",
     description: "Personal shopping assistance and dedicated support for your luxury purchases",
-    color: "from-luxury-gold to-yellow-400",
+    color: "from-yellow-500 via-amber-400 to-yellow-300",
   },
   {
     icon: Globe,
